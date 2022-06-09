@@ -10,13 +10,14 @@ class BMI(tk.Tk):
 
         # --視窗建立及初始設置 START--
         self.title('BMI測量')
-        self.geometry('400x200+500+300')  #視窗寬400px 高200px 左上頂點座標設置在(500px,300px)
+        self.geometry('400x220+500+300')  #視窗寬400px 高200px 左上頂點座標設置在(500px,300px)
         self.resizable(0, 0)   #視窗不可調整大小
         # --視窗建立及初始設置 END --
 
         # --主框架設定 START--
         self.mainframe1 = tk.Frame(self)
         self.mainframe2 = tk.Frame(self)
+        self.mainframe3 = tk.Frame(self)
         # --主框架設定 END--
 
         # --可變內容設定 START--
@@ -48,39 +49,47 @@ class BMI(tk.Tk):
 
         # --BMI顯示區設置 START--
         self.ShowFrame = tk.Frame(self.mainframe1)
-        self.ShowLabel1 = tk.Label(self.ShowFrame, text="您目前的BMI為", font=('Helvetica', 12), fg='blue')
+        self.ShowLabel1 = tk.Label(self.ShowFrame, text='您目前的BMI為', font=('Helvetica', 12), fg='blue')
         self.ShowLabel2 = tk.Label(self.ShowFrame, textvariable=self.BMI, bg='lightblue', width=10, font=('arial', 12))
         self.ShowLabel1.pack(side=tk.TOP, pady=5)
         self.ShowLabel2.pack(side=tk.TOP, pady=5)
         self.ShowFrame.pack(side=tk.TOP)
         # --BMI顯示區設置 END--
 
+        # --輸入法提醒文字 START--
+        self.NoteFrame = tk.Frame(self.mainframe2)
+        self.NoteLabel = tk.Label(self.NoteFrame, text='◎ 需切換成英文輸入法，才能輸入小數點', font=('arial', 10), fg='red')
+        self.NoteLabel.pack()
+        self.NoteFrame.pack()
+        # --輸入法提醒文字 END--
+
         # --按鈕設置區 START--
-        self.CalButton = tk.Button(self.mainframe2, text='計算', command=self.BMICal)
+        self.CalButton = tk.Button(self.mainframe3, text='計算', command=self.BMICal)
         self.CalButton.grid(row=0, column=0, ipadx=5)
 
-        self.ClearButton = tk.Button(self.mainframe2, text='清除', command=self.Clear)
+        self.ClearButton = tk.Button(self.mainframe3, text='清除', command=self.Clear)
         self.ClearButton.grid(row=0, column=1, ipadx=5)
 
-        self.SighInButton = tk.Button(self.mainframe2, text='登入', command=self.SignInCheck)
+        self.SighInButton = tk.Button(self.mainframe3, text='登入', command=self.SignInCheck)
         self.SighInButton.grid(row=0, column=2, ipadx=5)
 
-        self.SighOutButton = tk.Button(self.mainframe2, text='登出', state='disabled', command=self.SignOutCheck)
+        self.SighOutButton = tk.Button(self.mainframe3, text='登出', state='disabled', command=self.SignOutCheck)
         self.SighOutButton.grid(row=0, column=3, ipadx=5)
 
-        self.RegisterButton = tk.Button(self.mainframe2, text='註冊', command=self.Regist)
+        self.RegisterButton = tk.Button(self.mainframe3, text='註冊', command=self.Regist)
         self.RegisterButton.grid(row=1, column=0, ipadx=5)
 
-        self.WriteButton = tk.Button(self.mainframe2, text='寫入', state='disabled', command=self.WriteToDB)
+        self.WriteButton = tk.Button(self.mainframe3, text='寫入', state='disabled', command=self.WriteToDB)
         self.WriteButton.grid(row=1, column=1, ipadx=5)
 
-        self.SearchButton = tk.Button(self.mainframe2, text='查詢', state='disabled', command=self.Search)
+        self.SearchButton = tk.Button(self.mainframe3, text='查詢', state='disabled', command=self.Search)
         self.SearchButton.grid(row=1, column=2, ipadx=5)
         # --按鈕設置區 END---
 
         # --主框架定位 START--
         self.mainframe1.pack(side=tk.TOP, padx=5, pady=5)
         self.mainframe2.pack(side=tk.TOP, padx=5, pady=5)
+        self.mainframe3.pack(side=tk.TOP, padx=5, pady=5)
         # --主框架定位 END--
 
         # --資料庫建立 START --
